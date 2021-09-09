@@ -1,6 +1,6 @@
 import { link } from "fs";
-import LinkedList from "../linked-lists/LinkedList";
-import LinkedListNode from "../linked-lists/LinkedListNode";
+import LinkedList from "../linked-list/LinkedList";
+import LinkedListNode from "../linked-list/LinkedListNode";
 
 test('should create a LinkedListNode instance', () => {
     const linkedListNode = new LinkedListNode<string>();
