@@ -6,6 +6,14 @@ class LinkedList<T> implements LinkedListInterface<T> {
     private head: LinkedListNode<T> | null = new LinkedListNode<T>();
     private numberOfEntries: number = 0;
 
+    constructor(array: Partial<Array<T>> = []) {        
+        if (array) {
+            for (let item of array) {
+                this.add(item);
+            }
+        }
+    }
+
     add(content: T): void {
         if (this.isEmpty()) {
             this.head = new LinkedListNode<T>();
@@ -21,7 +29,7 @@ class LinkedList<T> implements LinkedListInterface<T> {
     }
 
     addAt(position: number, content: T) {
-        if (position < 1) {
+        if (position === 0 || this.isEmpty()) {
             this.add(content);
         } else {
             let previousNode = this.getNodeAt(position - 1);

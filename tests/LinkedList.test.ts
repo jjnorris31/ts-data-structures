@@ -104,3 +104,9 @@ test('should replace an entry of the linked list', () => {
     let linkedArray = linkedList.toArray();
     expect(linkedArray).toEqual(["apple", "soup", "tablet"]);
 });
+
+test('should create a linked list from an array', () => {
+    const linkedList = new LinkedList<string>(["speakers", "soup"]);
+    let linkedArray = linkedList.toArray();
+    expect(linkedArray).toEqual(["soup", "speakers"]);
+});
