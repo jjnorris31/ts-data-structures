@@ -1,4 +1,3 @@
-import { link } from "fs";
 import LinkedList from "../linked-list/LinkedList";
 import LinkedListNode from "../linked-list/LinkedListNode";
 
