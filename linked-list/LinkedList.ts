@@ -4,6 +4,7 @@ import LinkedListNode from './LinkedListNode';
 class LinkedList<T> implements LinkedListInterface<T> {
 
     private head: LinkedListNode<T> | null = new LinkedListNode<T>();
+    private tail: LinkedListNode<T> | null = new LinkedListNode<T>();
     private numberOfEntries: number = 0;
 
     constructor(array: Partial<Array<T>> = []) {        
@@ -19,24 +20,32 @@ class LinkedList<T> implements LinkedListInterface<T> {
             this.head = new LinkedListNode<T>();
             this.head.setContent(content);
             this.head.setNext(null);
+            this.tail = this.head;
         } else {
             let auxLinkedListNode = new LinkedListNode<T>();
             auxLinkedListNode.setContent(content);
-            auxLinkedListNode.setNext(this.head);
-            this.head = auxLinkedListNode;
+            this.tail.setNext(auxLinkedListNode);
+            this.tail = auxLinkedListNode;
+            this.tail = auxLinkedListNode;
         }
         this.numberOfEntries++;
     }
 
     addAt(position: number, content: T) {
         if (position === 0 || this.isEmpty()) {
+            let auxLinkedListNode = new LinkedListNode<T>();
+            auxLinkedListNode.setContent(content);
+            auxLinkedListNode.setNext(this.head);
+            this.head = auxLinkedListNode;
+            this.numberOfEntries++;
+        } else if (position === this.numberOfEntries - 1) {
             this.add(content);
         } else {
             let previousNode = this.getNodeAt(position - 1);
-            let newNode = new LinkedListNode<T>();
-            newNode.setContent(content);
-            newNode.setNext(previousNode.getNext());
-            previousNode.setNext(newNode);
+            let auxLinkedListNode = new LinkedListNode<T>();
+            auxLinkedListNode.setContent(content);
+            auxLinkedListNode.setNext(previousNode.getNext());
+            previousNode.setNext(auxLinkedListNode);
             this.numberOfEntries++;
         }
     }
@@ -66,7 +75,11 @@ class LinkedList<T> implements LinkedListInterface<T> {
     }
 
     getNodeAt(position: number): LinkedListNode<T> {
-        if (position < this.numberOfEntries) {
+        if (position === 0) {
+            return this.head;
+        } else if (position === this.numberOfEntries - 1) {
+            return this.tail;
+        } else if (position <= this.numberOfEntries - 1) {
             let auxNode = this.head;
             for (let i = 0; i < position; i++) {
                 auxNode = auxNode.getNext();
@@ -93,6 +106,7 @@ class LinkedList<T> implements LinkedListInterface<T> {
 
     public clear(): void {
         this.head = null;
+        this.tail = null;
         this.numberOfEntries = 0;
     }
 

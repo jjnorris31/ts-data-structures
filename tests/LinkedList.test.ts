@@ -6,44 +6,33 @@ test('should create a LinkedListNode instance', () => {
     expect(linkedListNode).toBeInstanceOf(LinkedListNode);
 });
 
-// test('should add an entry at position 2 of the linked list', () => {
-//     const linkedList = new LinkedList<string>();
-//     linkedList.add("speakers");
-//     linkedList.add("soup");
-//     linkedList.add("apple");
-//     linkedList.addAt(2, "mouse");
-//     let linkedArray = linkedList.toArray();
-//     expect(linkedArray).toEqual(['apple', 'soup', 'mouse', 'speakers']);
-// });
-
-test('should add an entry at the start of the linked list', () => {
+test('should add an entry', () => {
     const linkedList = new LinkedList<string>();
     linkedList.add("speakers");
     linkedList.add("soup");
     linkedList.add("apple");
-    linkedList.add("mouse");
     let linkedArray = linkedList.toArray();
-    expect(linkedArray).toEqual(['mouse', 'apple', 'soup', 'speakers']);
-});
+    expect(linkedArray).toEqual(['speakers', 'soup', 'apple']);
+})
 
-test('should add an entry at the start of the linked list using addAt()', () => {
-    const linkedList = new LinkedList<string>();
-    linkedList.add("speakers");
-    linkedList.add("soup");
-    linkedList.add("apple");
-    linkedList.addAt(0, "mouse");
-    let linkedArray = linkedList.toArray();
-    expect(linkedArray).toEqual(['mouse', 'apple', 'soup', 'speakers']);
-});
-
-test('should add an entry at position 2 of the linked list', () => {
+test('should add an entry at position 1 of the linked list', () => {
     const linkedList = new LinkedList<string>();
     linkedList.add("speakers");
     linkedList.add("soup");
     linkedList.add("apple");
     linkedList.addAt(1, "mouse");
     let linkedArray = linkedList.toArray();
-    expect(linkedArray).toEqual(['apple', 'mouse', 'soup', 'speakers']);
+    expect(linkedArray).toEqual(['speakers', 'mouse', 'soup', 'apple']);
+});
+
+test('should add an entry at the start of the linked list', () => {
+    const linkedList = new LinkedList<string>();
+    linkedList.add("speakers");
+    linkedList.add("soup");
+    linkedList.add("apple");
+    linkedList.addAt(0, "mouse");
+    let linkedArray = linkedList.toArray();
+    expect(linkedArray).toEqual(['mouse', 'speakers', 'soup', 'apple']);
 });
 
 test('should add an entry at the end of the linked list', () => {
@@ -53,9 +42,8 @@ test('should add an entry at the end of the linked list', () => {
     linkedList.add("apple");
     linkedList.addAt(3, "mouse");
     let linkedArray = linkedList.toArray();
-    expect(linkedArray).toEqual(['apple', 'soup', 'speakers', 'mouse']);
+    expect(linkedArray).toEqual(['speakers', 'soup', 'apple', 'mouse']);
 });
-
 
 test('should detect when the linked linked list is empty', () => {
     const linkedList = new LinkedList<string>();
@@ -73,7 +61,7 @@ test('should get an entry at given position in the linked list', () => {
     linkedList.add("speakers");
     linkedList.add("soup");
     linkedList.add("apple");
-    expect(linkedList.getEntry(2)).toEqual("speakers");
+    expect(linkedList.getEntry(2)).toEqual("apple");
 });
 
 test('should delete an item from the linked list', () => {
@@ -83,7 +71,7 @@ test('should delete an item from the linked list', () => {
     linkedList.add("apple");
     linkedList.remove(2);
     let linkedArray = linkedList.toArray();
-    expect(linkedArray).toEqual(["apple", "soup"]);
+    expect(linkedArray).toEqual(["speakers", "soup"]);
 });
 
 test('should get the size of the linked list', () => {
@@ -101,11 +89,11 @@ test('should replace an entry of the linked list', () => {
     linkedList.add("apple");
     linkedList.replace("tablet", 2);
     let linkedArray = linkedList.toArray();
-    expect(linkedArray).toEqual(["apple", "soup", "tablet"]);
+    expect(linkedArray).toEqual(["speakers", "soup", "tablet"]);
 });
 
 test('should create a linked list from an array', () => {
     const linkedList = new LinkedList<string>(["speakers", "soup"]);
     let linkedArray = linkedList.toArray();
-    expect(linkedArray).toEqual(["soup", "speakers"]);
+    expect(linkedArray).toEqual(["speakers", "soup"]);
 });
