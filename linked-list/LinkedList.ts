@@ -55,10 +55,18 @@ class LinkedList<T> implements LinkedListInterface<T> {
     }
 
     remove(position: number): void {
-        let previousNode = this.getNodeAt(position - 1);
-        let nodeToDelete = previousNode.getNext();
-        previousNode.setNext(nodeToDelete.getNext());
-        this.numberOfEntries--;
+        if (!this.isEmpty()) {
+            if (position === 0) {
+                this.head = this.head.getNext();
+            } else {
+                let previousNode = this.getNodeAt(position - 1);
+                let nodeToDelete = previousNode.getNext();
+                previousNode.setNext(nodeToDelete.getNext());
+            }
+            this.numberOfEntries--;
+        } else {
+            throw new Error("Cannot remove in empty list");
+        }
     }
 
     replace(content: T, position: number): void {
@@ -79,7 +87,7 @@ class LinkedList<T> implements LinkedListInterface<T> {
             return this.head;
         } else if (position === this.numberOfEntries - 1) {
             return this.tail;
-        } else if (position <= this.numberOfEntries - 1) {
+        } else if (position <= this.numberOfEntries - 1 && position >= 0) {
             let auxNode = this.head;
             for (let i = 0; i < position; i++) {
                 auxNode = auxNode.getNext();

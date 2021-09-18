@@ -34,7 +34,7 @@ export default class SeparateIteration<T> implements IteratorInterface<T> {
         if (!this.wasNextCalled) {
             throw new IllegalStateOperationError("Illegal call to remove(), next() was not called");
         } else {
-            this.list.remove(this.nextPosition);
+            this.list.remove(this.nextPosition - 1);
             this.nextPosition--;
             this.wasNextCalled = false;
         }

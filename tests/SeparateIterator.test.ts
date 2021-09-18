@@ -6,7 +6,7 @@ import LinkedList from "../linked-list/LinkedList";
 
 test("should return an element from iterator using next() method", () => {
     let separateIterator = new SeparateIterator<String>(new LinkedList(["Computer", "Tablet"]));
-    expect(separateIterator.next()).toEqual("Tablet");
+    expect(separateIterator.next()).toEqual("Computer");
 });
 
 test("should throws IllegalStateOperationError when iterator calls illegally to remove()", () => {
@@ -24,6 +24,7 @@ test("should remove an entry from iterator", () => {
     expect(() => {
         separateIterator.next();
         separateIterator.remove();
+        separateIterator.next();
         separateIterator.next();
     }).toThrowError(NoSuchElementError);
 });
